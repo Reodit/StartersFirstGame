@@ -7,6 +7,10 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    public enum Type { A, B, C };
+
+    public Type _enemyType;
+    
     public int maxHealth;
     public Transform _target;
     public int curHealth;
@@ -97,9 +101,9 @@ public class Enemy : MonoBehaviour
      }
          
          
-     }
+     
 
-     private void OnTriggerEnter(Collider other)
+     public void OnTriggerEnter(Collider other)
      {
          if (other.tag == "Melee")
          {
