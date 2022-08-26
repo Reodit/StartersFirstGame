@@ -25,12 +25,14 @@ public class Player : MonoBehaviour
     Animator anim;
     Rigidbody rigid;
 
+    PlayerInteraction playerInteraction;
     //GameObject nearObject;
 
     private void Awake()
     {
         anim = GetComponentInChildren<Animator>();
         rigid = GetComponent<Rigidbody>();
+        playerInteraction = GetComponent<PlayerInteraction>();  
     }
 
     void Update()
@@ -54,6 +56,9 @@ public class Player : MonoBehaviour
     {
         moveVec = new Vector3(h, 0, v).normalized;
 
+        if (playerInteraction.isSwap)
+            moveVec = Vector3.zero;
+
         // 만약 회피중이면? moveVec에 dodgeVec 대입
         if (isDodge)
             moveVec = dodgeVec;
@@ -73,7 +78,7 @@ public class Player : MonoBehaviour
     }
     void Jump()
     {
-        if (jumpDown && !isJump && moveVec == Vector3.zero && !isDodge)
+        if (jumpDown && !isJump && moveVec == Vector3.zero && !isDodge && !playerInteraction.isSwap)
         {
             // ForceMode.Impulse : 즉발적인 힘을 가함
             rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
@@ -84,7 +89,7 @@ public class Player : MonoBehaviour
     }
     void Dodge()
     {
-        if (jumpDown && !isJump && moveVec != Vector3.zero && !isDodge)
+        if (jumpDown && !isJump && moveVec != Vector3.zero && !isDodge && !playerInteraction.isSwap)
         {
             dodgeVec = moveVec;
             speed *= 2f;
