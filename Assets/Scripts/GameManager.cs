@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     private static float mTime;
     private static int mEnemyCount;
     private static int mStage;
-    private static int mGold;
+    public static int mGold;
     private static int mCurrentGold;
 
     private GameManager()
