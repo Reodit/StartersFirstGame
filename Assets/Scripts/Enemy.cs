@@ -7,6 +7,8 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    [Range(0,20)]public float y = 1f; 
+    Vector3 offset;
     public enum Type { A, B, C };
 
     public Type _enemyType;
@@ -35,6 +37,7 @@ public class Enemy : MonoBehaviour
          _material = GetComponentInChildren<MeshRenderer>().material;
          _nav = GetComponent<NavMeshAgent>();
          Invoke("ChaseStart",2f);
+         offset = new Vector3(0,y,0);
      }
 
      void ChaseStart()
@@ -65,6 +68,7 @@ public class Enemy : MonoBehaviour
 
      private void FixedUpdate()
      {
+         Targeting();
          FreezeVelocity();
      }
 
@@ -75,32 +79,47 @@ public class Enemy : MonoBehaviour
          switch (_enemyType)
          {
              case  Type.A:
+                 Debug.Log("A");
                  targetRadius = 1.5f;
                  targetRange = 3f;
                  break;
              case Type.B:
+                 Debug.Log("B");
                  targetRadius = 15f;
                  targetRange = 12f;
                  break;
              case Type.C:
+                 Debug.Log("C");
                  targetRadius = 0.5f;
                  targetRange = 25f;
                  break;
          }
-         RaycastHit[] rayHits = Physics.SphereCastAll(transform.position,
+
+        
+
+         RaycastHit[] rayHits = Physics.SphereCastAll(transform.position+offset,
              targetRadius,
              transform.forward,
              targetRange,
-             LayerMask.GetMask("Player"));
+             p);
+         //LayerMask.GetMask("Player"));
+         foreach (var hit in  rayHits)
+         {
+             currentHitDistance = hit.distance;
+         }
          if (rayHits.Length > 0 && !isAttack)
          {
+             Debug.Log("hey");
              StartCoroutine(Attack());
          }
 
      }
 
+     private float currentHitDistance = 25;
+     public LayerMask p;
      IEnumerator Attack()
      {
+         Debug.Log("Attack Method");
          isChase = false;
          isAttack = true;
          _anim.SetBool("isAttack", true);
@@ -126,6 +145,7 @@ public class Enemy : MonoBehaviour
                  yield return new WaitForSeconds(2f);
                  break;
              case Type.C:
+                 Debug.Log(2);
                  yield return new WaitForSeconds(0.5f);
                  GameObject instantBullet = Instantiate(_bullet, transform.position, transform.rotation);
                  Rigidbody rigidBullet = instantBullet.GetComponent<Rigidbody>();
@@ -197,5 +217,10 @@ public class Enemy : MonoBehaviour
          }
      }
 
-   
+     void OnDrawGizmos()
+     {
+         Gizmos.color = Color.red;
+         Debug.DrawRay(transform.position + offset, transform.forward * currentHitDistance);
+         Gizmos.DrawWireSphere(transform.position + offset + transform.forward * currentHitDistance, 0.5f);
+     }
 }
