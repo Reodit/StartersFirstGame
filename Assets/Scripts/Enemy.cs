@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
      Rigidbody _rigid;
      private BoxCollider _boxCollider;
      public GameObject _bullet;
-     public Material _material;
+      Material _material;
 
      private void Awake()
      {
@@ -85,7 +85,7 @@ public class Enemy : MonoBehaviour
                  break;
              case Type.B:
                  Debug.Log("B");
-                 targetRadius = 15f;
+                 targetRadius = 1f;
                  targetRange = 12f;
                  break;
              case Type.C:
@@ -97,7 +97,7 @@ public class Enemy : MonoBehaviour
 
         
 
-         RaycastHit[] rayHits = Physics.SphereCastAll(transform.position+offset,
+         RaycastHit[] rayHits = Physics.SphereCastAll(transform.position,
              targetRadius,
              transform.forward,
              targetRange,
@@ -142,12 +142,13 @@ public class Enemy : MonoBehaviour
                  _rigid.velocity = Vector3.zero;
                  meleeArea.enabled = false;
 
-                 yield return new WaitForSeconds(2f);
+                 yield return new WaitForSeconds(3f);
+                 
                  break;
              case Type.C:
                  Debug.Log(2);
                  yield return new WaitForSeconds(0.5f);
-                 GameObject instantBullet = Instantiate(_bullet, transform.position, transform.rotation);
+                 GameObject instantBullet = Instantiate(_bullet, transform.position, transform.rotation  );
                  Rigidbody rigidBullet = instantBullet.GetComponent<Rigidbody>();
                  rigidBullet.velocity = transform.forward * 20;
                  yield return new WaitForSeconds(2f);

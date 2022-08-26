@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4328776808574372128}
   - component: {fileID: 3008403015736018870}
-  - component: {fileID: 1534071216042581797}
   - component: {fileID: -950565369516463823}
-  m_Layer: 0
+  - component: {fileID: 3265100402312259260}
+  - component: {fileID: 1167887547796819658}
+  m_Layer: 15
   m_Name: Missile
-  m_TagString: Untagged
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,19 +53,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &1534071216042581797
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3988279684603712410}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.49, y: 2, z: 3}
-  m_Center: {x: 4.5, y: 2, z: 3}
 --- !u!114 &-950565369516463823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,8 +65,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f797e1d06c17e4efa8722120c665d544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 15
   isMelee: 0
+--- !u!114 &3265100402312259260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988279684603712410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c9b483ee5ab74397bc028f5dff601d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1167887547796819658
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988279684603712410}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!1 &5749291766316925078
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +103,7 @@ GameObject:
   - component: {fileID: 5749291766316925079}
   - component: {fileID: 5749291766316925077}
   - component: {fileID: 5749291766316925076}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +118,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5749291766316925078}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.33, y: 1.93, z: 4.11}
+  m_LocalPosition: {x: 0, y: 2.773, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -741,13 +754,13 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 14
+    angle: 13
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Rotation: {x: 0, y: 180, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -1064,30 +1077,21 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 1
-          inSlope: 0.24922414
-          outSlope: 0.24922414
+          inSlope: -2
+          outSlope: -2
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.3253333
-        - serializedVersion: 3
-          time: 0.44368166
-          value: 0.50882936
-          inSlope: -1.388604
-          outSlope: -1.388604
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.44875675
+          inWeight: 0
+          outWeight: 0
         - serializedVersion: 3
           time: 1
           value: 0
-          inSlope: -0.23847365
-          outSlope: -0.23847365
+          inSlope: 0
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.40744072
-          outWeight: 0.33333334
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -4912,7 +4916,7 @@ GameObject:
   - component: {fileID: 2460719484464459691}
   - component: {fileID: 749785266308697654}
   - component: {fileID: 5749291767774193444}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Mesh Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4926,14 +4930,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6114961411003496651}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 4.34, y: 1.86, z: 2.87}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4328776808574372128}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!33 &2460719484464459691
 MeshFilter:
   m_ObjectHideFlags: 0
