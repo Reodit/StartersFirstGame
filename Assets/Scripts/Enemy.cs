@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     public int curHealth;
     private NavMeshAgent _nav;
     private Animator _anim;
-    private int _gold;
+    public int _gold;
     public BoxCollider meleeArea;
     public bool isChase;
     public bool isAttack;
