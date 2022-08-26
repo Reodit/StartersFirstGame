@@ -4,12 +4,16 @@ using UnityEngine;
 using UnityEditor;
 
 public class GameManager : MonoBehaviour
-{
+{ 
     private static GameManager instance = null;
+    private static int mScore;
+    private static float mTime;
+    private static int mEnemyCount;
+    private static int mStage;
+
     private GameManager()
     {
         // 외부에서 생성하지 못하도록 private로 생성
-        // 변수 넣어주기
     }
 
     public static GameManager Instance
@@ -47,5 +51,10 @@ public class GameManager : MonoBehaviour
     public void GamePause()
     {
         EditorApplication.isPaused = true;
+    }
+
+    private void Update()
+    {
+        mTime = Time.time;
     }
 }
