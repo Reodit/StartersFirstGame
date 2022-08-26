@@ -7,11 +7,15 @@ public class Player : MonoBehaviour
     public float speed = 5.0f;
     public float jumpPower = 15.0f;
 
+    public GameObject[] weapons;
+    public bool[] hasWeapons;
+
     private float h;
     private float v;
 
     private bool walkDown;
     private bool jumpDown;
+    private bool interDown;
     private bool isJump;
     private bool isDodge;
 
@@ -20,6 +24,8 @@ public class Player : MonoBehaviour
 
     Animator anim;
     Rigidbody rigid;
+
+    GameObject nearObject;
 
     private void Awake()
     {
@@ -34,11 +40,13 @@ public class Player : MonoBehaviour
         Rotate();
         Jump();
         Dodge();
+        Interaction();
     }
     void GetInput()
     {
         h = Input.GetAxisRaw("Horizontal");
         v = Input.GetAxisRaw("Vertical");
+        interDown = Input.GetButtonDown("Interaction");
         walkDown = Input.GetButton("Walk");
         jumpDown = Input.GetButtonDown("Jump");
     }
@@ -92,6 +100,18 @@ public class Player : MonoBehaviour
         speed *= 0.5f;
         isDodge = false;
     }
+    void Interaction()
+    {
+        if (interDown && nearObject != null && !isJump && !isDodge)
+        {
+            if(nearObject.CompareTag("Weapon"))
+            {
+                
+            }
+            
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Floor"))
@@ -99,5 +119,17 @@ public class Player : MonoBehaviour
             anim.SetBool("isJump", false);
             isJump = false;
         }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Weapon"))
+            nearObject = other.gameObject;
+
+        Debug.Log(nearObject.name);
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Weapon"))
+            nearObject = null;
     }
 }
