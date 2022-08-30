@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
+    // 수류탄을 담을 배열
     public GameObject[] grenades;
 
-    public int ammo =0;
+    public int ammo = 0;
     public int coin = 0;
     public int health = 100;
     public int hasGrenade;

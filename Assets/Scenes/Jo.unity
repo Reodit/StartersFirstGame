@@ -611,41 +611,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1261097312}
   offset: {x: 0, y: 25, z: -14}
---- !u!1 &641528574 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1348174883623779993, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
-  m_PrefabInstance: {fileID: 1261097307}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &641528576
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 641528574}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 3, z: 2}
-  m_Center: {x: 0, y: 2.5, z: 0}
---- !u!114 &641528577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 641528574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99458022f8e184119984f3b2d316299d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  damage: 25
-  rate: 0.4
-  meleeArea: {fileID: 641528576}
-  trailEffect: {fileID: 0}
 --- !u!1001 &653803410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -973,38 +938,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1261097316, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
-      propertyPath: grenades.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1261097316, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
+    - target: {fileID: 1346770081, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
       propertyPath: grenades.Array.data[0]
       value: 
       objectReference: {fileID: 7209417622029233575}
-    - target: {fileID: 1261097316, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
+    - target: {fileID: 1346770081, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
       propertyPath: grenades.Array.data[1]
       value: 
       objectReference: {fileID: 7209417622258674649}
-    - target: {fileID: 1261097316, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
+    - target: {fileID: 1346770081, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
       propertyPath: grenades.Array.data[2]
       value: 
       objectReference: {fileID: 7209417620963076134}
-    - target: {fileID: 1261097316, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
+    - target: {fileID: 1346770081, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
       propertyPath: grenades.Array.data[3]
       value: 
       objectReference: {fileID: 7209417622424526494}
-    - target: {fileID: 1348174883623779993, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1348174883623779993, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
-      propertyPath: m_TagString
-      value: Melee
-      objectReference: {fileID: 0}
-    - target: {fileID: 1509416926169416907, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5461052779654786451, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1060,36 +1009,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5903297864969995812, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
   m_PrefabInstance: {fileID: 1261097307}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1346770080 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5461052779654786451, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
-  m_PrefabInstance: {fileID: 1261097307}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1346770081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1346770080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b8c004ee92f522419a650e283e17737, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grenades:
-  - {fileID: 7209417622029233575}
-  - {fileID: 7209417622258674649}
-  - {fileID: 7209417620963076134}
-  - {fileID: 7209417622424526494}
-  ammo: 0
-  coin: 0
-  health: 100
-  hasGrenade: 0
-  maxAmmo: 1000
-  maxCoin: 100000
-  maxHealth: 100
-  maxHasGrenade: 4
 --- !u!1 &1554568706
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,21 +8,25 @@ public class PlayerInteraction : MonoBehaviour
     public bool[] hasWeapons;
     
     private bool interDown;
-    public bool isSwap;
+    internal bool isSwap;
+    internal bool isFireReady;
+    internal bool fDown;
+
+    public float fireDelay;
+
     private int weaponIndex = -1;
     private int equipWeaponIndex = -1;
     private bool s1, s2, s3; // 무기 교체
 
-    private PlayerMovement player;
+    PlayerMovement playerMovement;
     GameObject nearObject;
-    GameObject equipWeapon;
+    Weapon equipWeapon;
 
-    Animator animator;
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<PlayerMovement>();
-        animator = GetComponentInChildren<Animator>();
+        playerMovement = GetComponent<PlayerMovement>();
+        isFireReady = true;
     }
 
     // Update is called once per frame
@@ -31,6 +35,7 @@ public class PlayerInteraction : MonoBehaviour
         GetInput();
         Interaction();
         Swap();
+        Attack();
     }
     void GetInput()
     {
@@ -38,6 +43,7 @@ public class PlayerInteraction : MonoBehaviour
         s1 = Input.GetButtonDown("Swap1");
         s2 = Input.GetButtonDown("Swap2");
         s3 = Input.GetButtonDown("Swap3");
+        fDown = Input.GetButtonDown("Fire1");
 
     }
     void Swap()
@@ -49,23 +55,21 @@ public class PlayerInteraction : MonoBehaviour
         if (s3 && (!hasWeapons[2] || equipWeaponIndex == 2))
             return;
 
-
-
         if (s1) weaponIndex = 0;
         if (s2) weaponIndex = 1;
         if (s3) weaponIndex = 2;
 
-        if ((s1 || s2 || s3) && !player.isJump && !player.isDodge)
+        if ((s1 || s2 || s3) && !playerMovement.isJump && !playerMovement.isDodge)
         {
             if (equipWeapon != null)
             {
-                equipWeapon.SetActive(false);
+                equipWeapon.gameObject.SetActive(false);
             }
             equipWeaponIndex = weaponIndex;
-            equipWeapon = weapons[weaponIndex];
-            equipWeapon.SetActive(true);
+            equipWeapon = weapons[weaponIndex].GetComponent<Weapon>();
+            equipWeapon.gameObject.SetActive(true);
 
-            animator.SetTrigger("doSwap");
+            playerMovement.anim.SetTrigger("doSwap");
             isSwap = true;
 
             Invoke("SwapOut", 0.4f);
@@ -77,7 +81,7 @@ public class PlayerInteraction : MonoBehaviour
     }
     void Interaction()
     {
-        if (interDown && nearObject != null && !player.isJump && !player.isDodge)
+        if (interDown && nearObject != null && !playerMovement.isJump && !playerMovement.isDodge)
         {
             if (nearObject.CompareTag("Weapon"))
             {
@@ -87,6 +91,22 @@ public class PlayerInteraction : MonoBehaviour
 
                 Destroy(nearObject);
             }
+        }
+    }
+    void Attack()
+    {
+        if (equipWeapon == null)
+        {
+            return;
+        }
+        fireDelay += Time.deltaTime;
+        isFireReady = equipWeapon.rate < fireDelay;
+
+        if (fDown && isFireReady && !playerMovement.isDodge && !isSwap)
+        {
+            equipWeapon.Use();
+            playerMovement.anim.SetTrigger("doSwing");
+            fireDelay = 0;
         }
     }
     private void OnTriggerStay(Collider other)
