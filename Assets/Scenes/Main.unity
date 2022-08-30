@@ -226,7 +226,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 41.426, y: 0, z: 0}
 --- !u!1 &75035067
 GameObject:
@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 133715891}
   - component: {fileID: 133715890}
   m_Layer: 5
-  m_Name: Text (Legacy) (1)
+  m_Name: EnemyB Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -476,7 +476,7 @@ GameObject:
   - component: {fileID: 143966824}
   - component: {fileID: 143966823}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Score Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1153,7 +1153,7 @@ GameObject:
   - component: {fileID: 335632260}
   - component: {fileID: 335632259}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Ammo Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1699,7 +1699,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4580989986373813590, guid: ab7c6b2a8d0304cffae0dcda3c93f18d, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4580989986373813590, guid: ab7c6b2a8d0304cffae0dcda3c93f18d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1988,7 +1988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8615490065718389541, guid: 470cd7958559046e1965dfab1342f1a6, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8615490065718389541, guid: 470cd7958559046e1965dfab1342f1a6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2122,7 +2122,7 @@ GameObject:
   - component: {fileID: 527526836}
   - component: {fileID: 527526835}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: Health Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2357,7 +2357,7 @@ RectTransform:
   - {fileID: 312733440}
   - {fileID: 1978995894}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2930,7 +2930,7 @@ GameObject:
   - component: {fileID: 717786998}
   - component: {fileID: 717786997}
   m_Layer: 5
-  m_Name: Text (Legacy) (2)
+  m_Name: Health Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3367,7 +3367,7 @@ GameObject:
   - component: {fileID: 790627419}
   - component: {fileID: 790627418}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: EnemyA Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3755,7 +3755,7 @@ GameObject:
   - component: {fileID: 1000588207}
   - component: {fileID: 1000588206}
   m_Layer: 5
-  m_Name: Image
+  m_Name: EnemyA Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3978,7 +3978,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1007405348}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2022986726}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: GameStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1007405348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4181,7 +4193,7 @@ GameObject:
   - component: {fileID: 1093053665}
   - component: {fileID: 1093053664}
   m_Layer: 5
-  m_Name: Text (Legacy) (2)
+  m_Name: EnemyC Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4487,7 +4499,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1296505241
 GameObject:
@@ -4941,7 +4953,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1456601604
 GameObject:
@@ -5035,7 +5047,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1467403582
 GameObject:
@@ -5403,7 +5415,7 @@ GameObject:
   - component: {fileID: 1527014891}
   - component: {fileID: 1527014890}
   m_Layer: 5
-  m_Name: Text (Legacy) (1)
+  m_Name: Ammo Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5483,7 +5495,7 @@ GameObject:
   - component: {fileID: 1528038331}
   - component: {fileID: 1528038330}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: EnemyB Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5681,7 +5693,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8058976022783527773, guid: fe92af116045c4ca3b9d7a538d17ded2, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8058976022783527773, guid: fe92af116045c4ca3b9d7a538d17ded2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6022,7 +6034,7 @@ GameObject:
   - component: {fileID: 1601793496}
   - component: {fileID: 1601793495}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: EnemyC Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7209,7 +7221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1978995894
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7276,6 +7288,83 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1978995893}
   m_CullTransparentMesh: 1
+--- !u!1 &2022986725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2022986727}
+  - component: {fileID: 2022986726}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2022986726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022986725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: addd81abe127042e2929e78c0fa28097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuCam: {fileID: 71100808}
+  gameCam: {fileID: 1289676655}
+  player: {fileID: 0}
+  stage: 0
+  menuPanel: {fileID: 312733439}
+  gamePanel: {fileID: 1978995893}
+  maxScoreTxt: {fileID: 366355318}
+  scoreTxt: {fileID: 143966823}
+  stageTxt: {fileID: 266820984}
+  playTimeTxt: {fileID: 97620754}
+  playerHealthTxt: {fileID: 0}
+  playerAmmoTxt: {fileID: 1527014890}
+  playerCoinTxt: {fileID: 0}
+  weapon1Img: {fileID: 711411130}
+  weapon2Img: {fileID: 983554032}
+  weapon3Img: {fileID: 239334103}
+  weapon4Img: {fileID: 1608606566}
+  enemyATxt: {fileID: 790627418}
+  enemyBTxt: {fileID: 133715890}
+  enemyCTxt: {fileID: 1093053664}
+  bossHealthGroup: {fileID: 416676099}
+  bossHealthBar: {fileID: 943012629}
+  mItemShop: {fileID: 0}
+  mWeaponShop: {fileID: 0}
+  mStartZone: {fileID: 0}
+  mEnemyGroup: []
+  mEnemies: []
+  mEnemyCntA: 0
+  mEnemyCntB: 0
+  mEnemyCntC: 0
+  mEnemyCntD: 0
+  mEnemyZones: []
+  mEnemyList: 
+--- !u!4 &2022986727
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022986725}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5, y: 24.7, z: -38.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2051976335
 GameObject:
   m_ObjectHideFlags: 0
