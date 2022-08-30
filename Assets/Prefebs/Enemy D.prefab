@@ -212,8 +212,8 @@ MonoBehaviour:
   score: 0
   gold: 0
   _enemyType: 3
-  maxHealth: 100
-  curHealth: 100
+  maxHealth: 2000
+  curHealth: 2000
   _target: {fileID: 5903297864969995812, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
   meleeArea: {fileID: 982559573840069861}
   _bullet: {fileID: 4876489582003710104, guid: 8452d6ccc3dd1459ba5b7ba9fe7eedc6, type: 3}
