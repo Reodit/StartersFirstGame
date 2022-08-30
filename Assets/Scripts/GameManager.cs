@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject menuCam;
     public GameObject gameCam;
     public PlayerMotor player;
-    //public Boss boss;
+    public Boss boss;
     public int stage;
 
     public GameObject menuPanel;
@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
             GameObject instantEnemy = Instantiate(mEnemies[3], mEnemyZones[0].position, mEnemyZones[0].rotation);
             Enemy enemy = instantEnemy.GetComponent<Enemy>();
             enemy._target = mPlayer.transform;
-            //Boss boss = instantEnemy.GetComponent<Boss>();
+            boss = instantEnemy.GetComponent<Boss>();
         }
         else
         {
@@ -275,7 +275,7 @@ public class GameManager : MonoBehaviour
         enemyBTxt.text = mEnemyCntB.ToString();
         enemyCTxt.text = mEnemyCntC.ToString();
 
-        //bossHealthBar.localScale = new Vector3(boss.curHealth / boss.maxHealth, 1, 1);
+        bossHealthBar.localScale = new Vector3(boss.curHealth / boss.maxHealth, 1, 1);
 
     }
 }
