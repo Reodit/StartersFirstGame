@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
             GameObject instantEnemy = Instantiate(mEnemies[3], mEnemyZones[0].position, mEnemyZones[0].rotation);
             Enemy enemy = instantEnemy.GetComponent<Enemy>();
             enemy._target = mPlayer.transform;
-            boss = instantEnemy.GetComponent<Boss>();
+            //Boss boss = instantEnemy.GetComponent<Boss>();
         }
         else
         {
