@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
     {
         moveVec = new Vector3(h, 0, v).normalized;
 
-        if (pi.isSwap || !pi.isFireReady)
+        if (pi.isSwap || !pi.isFireReady || pi.isReload)
             moveVec = Vector3.zero;
 
         // 만약 회피중이면? moveVec에 dodgeVec 대입

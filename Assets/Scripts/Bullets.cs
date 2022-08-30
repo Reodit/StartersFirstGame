@@ -14,7 +14,6 @@ public class Bullets : MonoBehaviour
     {
         if (!isRock && collision.gameObject.tag == "Floor")
         {
-            Debug.Log(11);
             Destroy(gameObject, 3);
         }
         if (!isMelee && collision.gameObject.tag == "Wall")
@@ -28,7 +27,6 @@ public class Bullets : MonoBehaviour
     {
         if (!isMelee && other.gameObject.tag == "Wall")
         {
-            Debug.Log(1);
             Destroy(gameObject);
         }
         if(!isMelee && other.gameObject.tag == "Player")

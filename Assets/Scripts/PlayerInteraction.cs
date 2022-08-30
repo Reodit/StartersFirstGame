@@ -9,15 +9,18 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject[] weapons; // ���⸦ ���� �迭
     public bool[] hasWeapons; // ���� ������ �ִ� ����
     private bool interDown; // ��ȣ�ۿ� ��ư
-    internal bool isSwap; // ���� ��ȯ
+    internal bool isSwap; // ���� ��ȯs
     internal bool fDown; // ���� Ű 
+    internal bool rDown;
     internal bool isFireReady; // ���� �غ�
+    internal bool isReload;
     private float fireDelay; // ���� ������
     private int weaponIndex = -1; 
     private int equipWeaponIndex = -1;
     private bool s1, s2, s3; // ���� ��ü
     bool isShop = false;
 
+    private PlayerMotor motor;
     private PlayerMovement pm;
     private GameObject nearObject; // ��ó�� �ִ� ������Ʈ 
     internal Weapon equipWeapon;
@@ -27,6 +30,7 @@ public class PlayerInteraction : MonoBehaviour
     void Start()
     {
         pm = GetComponent<PlayerMovement>();
+        motor = GetComponent<PlayerMotor>();
         isFireReady = true;
     }
     #endregion
@@ -38,6 +42,7 @@ public class PlayerInteraction : MonoBehaviour
         Interaction();
         Swap();
         Attack();
+        ReLoad();
     }
     #endregion
 
@@ -48,12 +53,14 @@ public class PlayerInteraction : MonoBehaviour
         s1 = Input.GetButtonDown("Swap1");
         s2 = Input.GetButtonDown("Swap2");
         s3 = Input.GetButtonDown("Swap3");
-        fDown = Input.GetButtonDown("Fire1");
+        fDown = Input.GetButton("Fire1");
+        rDown = Input.GetButtonDown("Reload");
+
     }
     #endregion
 
-    #region Swap (���� ��ȯ)
-    void Swap() // ���� ��ȯ
+    #region Swap (무기변환)
+    void Swap() // 무기변환
     {
         if (s1 && (!hasWeapons[0] || equipWeaponIndex == 0))
             return;
@@ -112,7 +119,7 @@ public class PlayerInteraction : MonoBehaviour
     }
     #endregion
 
-    #region Attack (����)
+    #region Attack (공격)
     void Attack()
     {
         if (equipWeapon == null)
@@ -125,13 +132,37 @@ public class PlayerInteraction : MonoBehaviour
         if (fDown && isFireReady && !pm.isDodge && !isSwap)
         {
             equipWeapon.Use();
-            pm.anim.SetTrigger("doSwing");
+            pm.anim.SetTrigger(equipWeapon.type == Weapon.Type.Melee ? "doSwing" : "doShot");
             fireDelay = 0;
         }
     }
     #endregion
 
-    #region Trigger (������ �ݱ�)
+    #region ReLoad
+    void ReLoad()
+    {
+        if (equipWeapon == null) return;
+        if (equipWeapon.type == Weapon.Type.Melee) return;
+        if ((motor.ammo) == 0) return;
+
+        if (rDown && !pm.isJump && !pm.isDodge && !isSwap && isFireReady)
+        {
+            pm.anim.SetTrigger("doReload");
+            isReload = true;
+
+            Invoke("ReloadOut", 3.0f);
+        }
+    }
+    void ReloadOut()
+    {
+        int reAmmo = motor.ammo < equipWeapon.maxAmmo ? motor.ammo : equipWeapon.maxAmmo;
+        equipWeapon.curAmmo = equipWeapon.maxAmmo;
+        motor.ammo -= reAmmo;
+        isReload = false;
+    }
+
+    #endregion
+    #region Trigger
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Weapon") || other.gameObject.CompareTag("Shop"))
