@@ -14,6 +14,7 @@ public class Bullets : MonoBehaviour
     {
         if (!isRock&&collision.gameObject.tag == "Floor")
         {
+            Debug.Log(11);
             Destroy(gameObject, 3);
         }
     }

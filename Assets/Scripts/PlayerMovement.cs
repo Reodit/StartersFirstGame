@@ -2,43 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 스크립트에서 region, endregion를 사용하여 확대 및 축소 할수있는 코드 블록을 지정할수있다.
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5.0f;
-    public float jumpPower = 15.0f;
+    #region Player Variables
+    [SerializeField] private float speed = 5.0f;  // 이동 속도
+    [SerializeField] private float jumpPower = 15.0f; // 점프 힘
 
+    // 플레이어 이동, 걷기, 점프
     private float h;
     private float v;
+    private bool walkDown; 
+    private bool jumpDown;  
 
-    private bool walkDown;
-    private bool jumpDown;
-    public bool isJump;
-    public bool isDodge;
+    private Vector3 moveVec; // 이동 방향
+    private Vector3 dodgeVec; // 회피 방향
 
-    Vector3 moveVec;
-    Vector3 dodgeVec;
+    // internal : 같은 어셈블리(프로젝트) 에서만 접근 허용
+    internal bool isJump;
+    internal bool isDodge;
 
-    Animator anim;
-    Rigidbody rigid;
+    internal Rigidbody rigid;
+    internal Animator anim;
+    private  PlayerInteraction pi;
+    #endregion
 
-    PlayerInteraction playerInteraction;
-
+    #region Init (초기화)
     private void Awake()
     {
         anim = GetComponentInChildren<Animator>();
         rigid = GetComponent<Rigidbody>();
-        playerInteraction = GetComponent<PlayerInteraction>();  
+        pi = GetComponent<PlayerInteraction>();  
     }
+    #endregion
 
+    #region Update
     void Update()
     {
-        GetInput();
-        Move();
-        Rotate();
-        Jump();
-        Dodge();
-
+        GetInput();     // 입력
+        Move();         // 이동
+        Rotate();       // 회전
+        Jump();         // 점프
+        Dodge();        // 회피
     }
+    #endregion
+
+    #region Input (입력)
     void GetInput()
     {
         h = Input.GetAxisRaw("Horizontal");
@@ -46,11 +55,14 @@ public class PlayerMovement : MonoBehaviour
         walkDown = Input.GetButton("Walk");
         jumpDown = Input.GetButtonDown("Jump");
     }
+    #endregion
+
+    #region Move (이동)
     void Move()
     {
         moveVec = new Vector3(h, 0, v).normalized;
 
-        if (playerInteraction.isSwap)
+        if (pi.isSwap || !pi.isFireReady)
             moveVec = Vector3.zero;
 
         // 만약 회피중이면? moveVec에 dodgeVec 대입
@@ -65,14 +77,20 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("isRun", moveVec != Vector3.zero);
         anim.SetBool("isWalk", walkDown);
     }
+    #endregion
+
+    #region Rotate (회전)
     void Rotate()
     {
         // LookAt() : 지정된 벡터를 향해서 회전시켜주는 함수
         transform.LookAt(transform.position + moveVec);
     }
+    #endregion
+
+    #region Jump (점프)
     void Jump()
     {
-        if (jumpDown && !isJump && moveVec == Vector3.zero && !isDodge && !playerInteraction.isSwap)
+        if (jumpDown && !isJump && moveVec == Vector3.zero && !isDodge && !pi.isSwap)
         {
             // ForceMode.Impulse : 즉발적인 힘을 가함
             rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
@@ -81,9 +99,12 @@ public class PlayerMovement : MonoBehaviour
             isJump = true;
         }
     }
-    void Dodge()
+    #endregion
+
+    #region Dodge (회피)
+    void Dodge() 
     {
-        if (jumpDown && !isJump && moveVec != Vector3.zero && !isDodge && !playerInteraction.isSwap)
+        if (jumpDown && !isJump && moveVec != Vector3.zero && !isDodge && !pi.isSwap)
         {
             dodgeVec = moveVec;
             speed *= 2f;
@@ -99,7 +120,9 @@ public class PlayerMovement : MonoBehaviour
         speed *= 0.5f;
         isDodge = false;
     }
+    #endregion
 
+    #region Ground Check (지면 체크)
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Floor"))
@@ -108,4 +131,5 @@ public class PlayerMovement : MonoBehaviour
             isJump = false;
         }
     }
+    #endregion
 }

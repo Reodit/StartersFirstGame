@@ -9,34 +9,38 @@ public class Enemy : MonoBehaviour
 {
     [Range(0,20)]public float y = 1f; 
     Vector3 offset;
-    public enum Type { A, B, C };
+    public enum Type { A, B, C,D };
 
     public Type _enemyType;
     
     public int maxHealth;
-    public Transform _target;
     public int curHealth;
-    private NavMeshAgent _nav;
-    private Animator _anim;
-    public int _gold;
+    public Transform _target;
     public BoxCollider meleeArea;
+    public GameObject _bullet;
     public bool isChase;
     public bool isAttack;
+    public bool isDead;
+   
+     public Rigidbody _rigid;
+     public BoxCollider _boxCollider;
+     public MeshRenderer[] _mesh;
+    public NavMeshAgent _nav;
+     public Animator _anim;
+    public int _gold;
     
 
-     Rigidbody _rigid;
-     private BoxCollider _boxCollider;
-     public GameObject _bullet;
-      Material _material;
 
      private void Awake()
      {
          _anim = GetComponentInChildren<Animator>();
          _rigid = GetComponent<Rigidbody>();
          _boxCollider = GetComponent<BoxCollider>();
-         _material = GetComponentInChildren<MeshRenderer>().material;
+         _mesh = GetComponentsInChildren<MeshRenderer>();
          _nav = GetComponent<NavMeshAgent>();
-         Invoke("ChaseStart",2f);
+          
+         if(_enemyType != Type.D)
+            Invoke("ChaseStart",2f);
          offset = new Vector3(0,y,0);
      }
 
@@ -47,7 +51,7 @@ public class Enemy : MonoBehaviour
      }
      private void Update()
      {
-         if (_nav.enabled)
+         if (_nav.enabled && _enemyType != Type.D)
          {
              _nav.SetDestination(_target.position);
              _nav.isStopped = !isChase;
@@ -74,44 +78,48 @@ public class Enemy : MonoBehaviour
 
      void Targeting()
      {
-         float targetRadius = 0f;
-         float targetRange = 0f;
-         switch (_enemyType)
+         if (!isDead && _enemyType != Type.D)
          {
-             case  Type.A:
-                 Debug.Log("A");
-                 targetRadius = 1.5f;
-                 targetRange = 3f;
-                 break;
-             case Type.B:
-                 Debug.Log("B");
-                 targetRadius = 1f;
-                 targetRange = 12f;
-                 break;
-             case Type.C:
-                 Debug.Log("C");
-                 targetRadius = 0.5f;
-                 targetRange = 25f;
-                 break;
-         }
+             float targetRadius = 0f;
+             float targetRange = 0f;
+             switch (_enemyType)
+             {
+                 case  Type.A:
+                     Debug.Log("A");
+                     targetRadius = 1.5f;
+                     targetRange = 3f;
+                     break;
+                 case Type.B:
+                     Debug.Log("B");
+                     targetRadius = 1f;
+                     targetRange = 12f;
+                     break;
+                 case Type.C:
+                     Debug.Log("C");
+                     targetRadius = 0.5f;
+                     targetRange = 25f;
+                     break;
+             }
 
         
 
-         RaycastHit[] rayHits = Physics.SphereCastAll(transform.position,
-             targetRadius,
-             transform.forward,
-             targetRange,
-             p);
-         //LayerMask.GetMask("Player"));
-         foreach (var hit in  rayHits)
-         {
-             currentHitDistance = hit.distance;
+             RaycastHit[] rayHits = Physics.SphereCastAll(transform.position,
+                 targetRadius,
+                 transform.forward,
+                 targetRange,
+                 p);
+             //LayerMask.GetMask("Player"));
+             foreach (var hit in  rayHits)
+             {
+                 currentHitDistance = hit.distance;
+             }
+             if (rayHits.Length > 0 && !isAttack)
+             {
+                 Debug.Log("hey");
+                 StartCoroutine(Attack());
+             }
          }
-         if (rayHits.Length > 0 && !isAttack)
-         {
-             Debug.Log("hey");
-             StartCoroutine(Attack());
-         }
+      
 
      }
 
@@ -184,17 +192,28 @@ public class Enemy : MonoBehaviour
 
      IEnumerator OnDamage(Vector3 rectVec, bool isGrendade)
      {
-         _material.color = Color.red;
+         foreach (var mesh in _mesh)
+         {
+             mesh.material.color = Color.red;
+         }
+       
          yield return new WaitForSeconds(0.1f);
 
          if (curHealth > 0)
          {
-             _material.color = Color.white;
+             foreach (var mesh in _mesh)
+             {
+                 mesh.material.color = Color.red;
+             }
          }
          else
          {
-             _material.color = Color.gray;
+             foreach (var mesh in _mesh)
+             {
+                 mesh.material.color = Color.red;
+             }
              gameObject.layer = 14;
+             isDead = true;
              isChase = false;
              _nav.enabled = false;
              _anim.SetTrigger("doDie");
@@ -214,7 +233,8 @@ public class Enemy : MonoBehaviour
                  rectVec += Vector3.up;
                  _rigid.AddForce(rectVec * 5 , ForceMode.Impulse);
              }
-             Destroy(gameObject, 4);
+             if(_enemyType != Type.D)
+                Destroy(gameObject, 4);
          }
      }
 
