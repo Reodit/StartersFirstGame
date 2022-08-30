@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
-    Player enterPlayer;
+    PlayerMovement enterPlayer;
     public RectTransform uiGroup;
     public Animator anim;
 
@@ -15,7 +15,7 @@ public class Shop : MonoBehaviour
     public string[] talkData;
     public Text talkText;
 
-    public void Enter(Player player)
+    public void Enter(PlayerMovement player)
     {
         enterPlayer = player;
         uiGroup.anchoredPosition = Vector3.zero;

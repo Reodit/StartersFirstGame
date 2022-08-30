@@ -6,7 +6,7 @@ using UnityEditor;
 public class GameManager : MonoBehaviour
 { 
     private static GameManager instance = null;
-    private Player mPlayer;
+    private PlayerMovement mPlayer;
     private Enemy mEnemy;
     public Enemy[] mEnemyGroup;
     private static int mScore;
