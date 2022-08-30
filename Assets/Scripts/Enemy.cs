@@ -42,7 +42,13 @@ public class Enemy : MonoBehaviour
          _boxCollider = GetComponent<BoxCollider>();
          _mesh = GetComponentsInChildren<MeshRenderer>();
          _nav = GetComponent<NavMeshAgent>();
+         Debug.Log("enemy Awake");
+         Debug.Log(_nav);
+        
          _target = GameObject.Find("Player").transform;
+         // Debug.Log(_target.gameObject.layer);
+         // Debug.Log(LayerMask.GetMask("Player"));
+         
          if(_enemyType != Type.D)
             Invoke("ChaseStart",2f);
          offset = new Vector3(0,y,0);
@@ -55,6 +61,7 @@ public class Enemy : MonoBehaviour
      }
      private void Update()
      {
+         
          if (_nav.enabled && _enemyType != Type.D)
          {
              _nav.SetDestination(_target.position);
@@ -111,7 +118,8 @@ public class Enemy : MonoBehaviour
                  targetRadius,
                  transform.forward,
                  targetRange,
-                 p);
+                 LayerMask.GetMask("Player"));
+             
              //LayerMask.GetMask("Player"));
              foreach (var hit in  rayHits)
              {
@@ -120,7 +128,7 @@ public class Enemy : MonoBehaviour
              if (rayHits.Length > 0 && !isAttack)
              {
                  Debug.Log("hey");
-                 StartCoroutine(Attack());
+                 StartCoroutine("Attack");
              }
          }
       
