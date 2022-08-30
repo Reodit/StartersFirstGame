@@ -823,6 +823,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 198377503}
   m_CullTransparentMesh: 1
+--- !u!114 &199023144 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8615490065663215861, guid: 470cd7958559046e1965dfab1342f1a6, type: 3}
+  m_PrefabInstance: {fileID: 511888475}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7e6f57c3e9e4855946e33c2132bcf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &239334101
 GameObject:
   m_ObjectHideFlags: 0
@@ -2065,9 +2076,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8248439665911353073, guid: 470cd7958559046e1965dfab1342f1a6, type: 3}
+      propertyPath: uiGroup
+      value: 
+      objectReference: {fileID: 1467403583}
     - target: {fileID: 8615490065718389540, guid: 470cd7958559046e1965dfab1342f1a6, type: 3}
       propertyPath: m_Name
       value: Weapon Shop
+      objectReference: {fileID: 0}
+    - target: {fileID: 8615490065718389540, guid: 470cd7958559046e1965dfab1342f1a6, type: 3}
+      propertyPath: m_TagString
+      value: Shop
       objectReference: {fileID: 0}
     - target: {fileID: 8615490065718389541, guid: 470cd7958559046e1965dfab1342f1a6, type: 3}
       propertyPath: m_RootOrder
@@ -2447,6 +2466,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &640823240 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8058976022854985869, guid: fe92af116045c4ca3b9d7a538d17ded2, type: 3}
+  m_PrefabInstance: {fileID: 1555157871}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7e6f57c3e9e4855946e33c2132bcf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &673867845
 GameObject:
   m_ObjectHideFlags: 0
@@ -2529,7 +2559,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 673867848}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 199023144}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: Exit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &673867848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5772,6 +5814,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Item Shop
       objectReference: {fileID: 0}
+    - target: {fileID: 8058976022783527772, guid: fe92af116045c4ca3b9d7a538d17ded2, type: 3}
+      propertyPath: m_TagString
+      value: Shop
+      objectReference: {fileID: 0}
     - target: {fileID: 8058976022783527773, guid: fe92af116045c4ca3b9d7a538d17ded2, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -5816,6 +5862,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8058976022854985869, guid: fe92af116045c4ca3b9d7a538d17ded2, type: 3}
+      propertyPath: uiGroup
+      value: 
+      objectReference: {fileID: 1467403583}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe92af116045c4ca3b9d7a538d17ded2, type: 3}
 --- !u!1 &1558890253
@@ -7249,7 +7299,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1901764394}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 640823240}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: Exit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1901764394
 MonoBehaviour:
   m_ObjectHideFlags: 0

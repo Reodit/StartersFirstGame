@@ -11,6 +11,7 @@ TagManager:
   - Melee
   - EnemyBullet
   - Wall
+  - Shop
   layers:
   - Default
   - TransparentFX
