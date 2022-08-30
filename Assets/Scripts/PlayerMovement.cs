@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     #region Player Variables
+    public Camera followCamera;
+
     [SerializeField] private float speed = 5.0f;  // 이동 속도
     [SerializeField] private float jumpPower = 15.0f; // 점프 힘
 
@@ -83,7 +85,21 @@ public class PlayerMovement : MonoBehaviour
     void Rotate()
     {
         // LookAt() : 지정된 벡터를 향해서 회전시켜주는 함수
+        // 키보드에 의한 회전
         transform.LookAt(transform.position + moveVec);
+
+        // 마우스에 의한 회전
+        if (pi.fDown)
+        {
+            Ray ray = followCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit rayHit;
+            if (Physics.Raycast(ray, out rayHit, 100))
+            {
+                Vector3 nextVec = rayHit.point - transform.position;
+                nextVec.y = 0;
+                transform.LookAt(transform.position + nextVec);
+            }
+        }
     }
     #endregion
 
