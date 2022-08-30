@@ -100,6 +100,11 @@ public class PlayerInteraction : MonoBehaviour
 
                 Destroy(nearObject);
             }
+            else if (nearObject.tag == "Shop")
+            {
+                Shop shop = nearObject.GetComponent<Shop>();
+                shop.Enter(this);
+            }
         }
     }
     #endregion
@@ -126,7 +131,7 @@ public class PlayerInteraction : MonoBehaviour
     #region Trigger (������ �ݱ�)
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Weapon"))
+        if (other.gameObject.CompareTag("Weapon") || other.gameObject.CompareTag("Shop"))
             nearObject = other.gameObject;
 
         //Debug.Log(nearObject.name);
@@ -135,6 +140,11 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Weapon"))
             nearObject = null;
+        else if (other.gameObject.CompareTag("Shop")) {
+            Shop shop = nearObject.GetComponent<Shop>();
+            shop.Exit();
+            nearObject = null;
+        }
     }
     #endregion
 }
