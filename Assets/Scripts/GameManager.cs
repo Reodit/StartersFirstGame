@@ -74,9 +74,10 @@ public class GameManager : MonoBehaviour
         }
         set
         {
-            mCurrentGold += value;
+            mCurrentGold = value;
         }
     }
+
     public int Score {
         get
         {
@@ -84,9 +85,10 @@ public class GameManager : MonoBehaviour
         }
         set
         {
-            mScore += value;
+            mScore = value;
         }
     }
+
     public static GameManager Instance
     {
         get
@@ -252,7 +254,7 @@ public class GameManager : MonoBehaviour
 
         //플레이어 UI
         playerHealthTxt.text = player.health + " / " + player.maxHealth;
-        playerCoinTxt.text = string.Format("{0:n0}", player.coin);
+        playerCoinTxt.text = string.Format("{0:n0}", mCurrentGold);
 
         if (pi.equipWeapon == null)
         {

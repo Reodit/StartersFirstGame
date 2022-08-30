@@ -44,7 +44,7 @@ public class Shop : MonoBehaviour
     public void Buy(int index)
     {
         int price = itmePrice[index];
-        if(price > GameManager.Instance.Gold)
+        if(price > instance.Gold)
         {
             StopCoroutine(Talk());
             StartCoroutine(Talk());
@@ -52,7 +52,7 @@ public class Shop : MonoBehaviour
             return;
         }
 
-        GameManager.Instance.Gold -= price;
+        instance.Gold -= price;
         Vector3 ranVec = Vector3.right * Random.Range(-3, 3) + Vector3.forward * Random.Range(-3, 3);
         Instantiate(itemObj[index], itemPos[index].position + ranVec,itemPos[index].rotation);
     }
