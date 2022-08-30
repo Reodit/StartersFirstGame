@@ -1783,6 +1783,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4580989986214247020, guid: ab7c6b2a8d0304cffae0dcda3c93f18d, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580989986214247020, guid: ab7c6b2a8d0304cffae0dcda3c93f18d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -1839,6 +1843,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4580989986466013198, guid: ab7c6b2a8d0304cffae0dcda3c93f18d, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580989986466013198, guid: ab7c6b2a8d0304cffae0dcda3c93f18d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -1849,6 +1857,10 @@ PrefabInstance:
     - target: {fileID: 4580989986932950164, guid: ab7c6b2a8d0304cffae0dcda3c93f18d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580989987850134848, guid: ab7c6b2a8d0304cffae0dcda3c93f18d, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 4580989987850134848, guid: ab7c6b2a8d0304cffae0dcda3c93f18d, type: 3}
       propertyPath: m_StaticEditorFlags

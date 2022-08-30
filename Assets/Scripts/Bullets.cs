@@ -12,7 +12,7 @@ public class Bullets : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!isRock&&collision.gameObject.tag == "Floor")
+        if (!isRock && collision.gameObject.tag == "Floor")
         {
             Debug.Log(11);
             Destroy(gameObject, 3);
