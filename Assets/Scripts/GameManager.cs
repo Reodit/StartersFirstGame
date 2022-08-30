@@ -122,7 +122,6 @@ public class GameManager : MonoBehaviour
     {
         pi = _player.GetComponent<PlayerInteraction>();
         mIsBattle = true;
-        StartCoroutine(InBattle());
     }
 
     public void StageStart()
