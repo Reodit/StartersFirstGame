@@ -11,6 +11,7 @@ public class BossMissile : Bullets
 
     void Awake()
     {
+        target = GameObject.Find("Player").transform;
         nav = GetComponent<NavMeshAgent>();
     }
     void Update()

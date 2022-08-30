@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
          _boxCollider = GetComponent<BoxCollider>();
          _mesh = GetComponentsInChildren<MeshRenderer>();
          _nav = GetComponent<NavMeshAgent>();
-          
+         _target = GameObject.Find("Player").transform;
          if(_enemyType != Type.D)
             Invoke("ChaseStart",2f);
          offset = new Vector3(0,y,0);
