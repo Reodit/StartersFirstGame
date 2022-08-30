@@ -189,17 +189,18 @@ public class Enemy : MonoBehaviour
      {
          if (other.tag == "Melee")
          {
-             //Weapon weapon = other.GetComponent<Weapon>();
-             //curHealth -= weapon.damage;
-             // Vector3 reacVec = transform.position - other.transform.position;
-             //
-             // StartCoroutine(OnDamage(reacVec, false));
-         }
+            Weapon weapon = other.GetComponent<Weapon>();
+            curHealth -= weapon.damage;
+            Vector3 reacVec = transform.position - other.transform.position;
+
+            StartCoroutine(OnDamage(reacVec, false));
+        }
          else if (other.tag == "Bullet")
          {
-             // Bullet bullet = other.GetComponent<Bullet>();
-             // curHealth -= bullet.damage;
-         }
+            Bullets bullet = other.GetComponent<Bullets>();
+            curHealth -= bullet.damage;
+            Debug.Log(curHealth);
+        }
      }
 
      IEnumerator OnDamage(Vector3 rectVec, bool isGrendade)

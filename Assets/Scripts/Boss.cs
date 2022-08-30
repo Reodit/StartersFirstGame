@@ -98,7 +98,7 @@ public class Boss : Enemy
         isLook = true;
         StartCoroutine(Think());
     }
-
+    
     IEnumerator Taunt()
     {
         tauntVec = _target.position + lockVec;

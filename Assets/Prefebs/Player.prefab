@@ -259,6 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41e348c36a20b524080318b3f43a3a08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  followCamera: {fileID: 2326881899754877244, guid: 63de78afdc08ffa429b99e20ababa727, type: 3}
   speed: 15
   jumpPower: 15
 --- !u!114 &1261097316
