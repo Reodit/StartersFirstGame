@@ -11,6 +11,10 @@ public class Enemy : MonoBehaviour
     Vector3 offset;
     public enum Type { A, B, C,D };
 
+    public int score;
+    public int gold;
+
+    private GameManager instance;
     public Type _enemyType;
     
     public int maxHealth;
@@ -27,7 +31,7 @@ public class Enemy : MonoBehaviour
      public MeshRenderer[] _mesh;
     public NavMeshAgent _nav;
      public Animator _anim;
-    public int _gold;
+    
     
 
 
@@ -214,6 +218,9 @@ public class Enemy : MonoBehaviour
              }
              gameObject.layer = 14;
              isDead = true;
+             GameManager.Instance.Gold = this.gold;
+             GameManager.Instance.Score = this.score;
+
              isChase = false;
              _nav.enabled = false;
              _anim.SetTrigger("doDie");

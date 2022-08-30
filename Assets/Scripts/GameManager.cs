@@ -4,7 +4,10 @@ using UnityEngine;
 using UnityEditor;
 
 public class GameManager : MonoBehaviour
-{ 
+{
+    private int mScore;
+    private static int mCurrentGold;
+    
     private static GameManager instance = null;
 
     public GameObject mItemShop;
@@ -13,14 +16,11 @@ public class GameManager : MonoBehaviour
 
     private PlayerMovement mPlayer;
     private Enemy mEnemy;
-    public Enemy[] mEnemyGroup;
     public GameObject[] mEnemies;
-    private static int mScore;
     private static float mTime;
     private static int mEnemyCount;
     private static int mStage;
-    public static int mGold;
-    private static int mCurrentGold;
+    
     private static bool mIsBattle;
 
 
@@ -38,6 +38,26 @@ public class GameManager : MonoBehaviour
         // 외부에서 생성하지 못하도록 private로 생성
     }
 
+    public int Gold {
+        get
+        {
+            return mCurrentGold;
+        }
+        set
+        {
+            mCurrentGold += value;
+        }
+    }
+    public int Score {
+        get
+        {
+            return mScore;
+        }
+        set
+        {
+            mScore += value;
+        }
+    }
     public static GameManager Instance
     {
         get
@@ -46,6 +66,7 @@ public class GameManager : MonoBehaviour
             {
                 return null;
             }
+
             return instance;
         }
     }
@@ -89,7 +110,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator InBattle()
     {
-        if(mStage % 5 == 0)
+        if (mStage % 5 == 0)
         {
             mEnemyCntD++;
             GameObject instantEnemy = Instantiate(mEnemies[3], mEnemyZones[0].position, mEnemyZones[0].rotation);
@@ -121,14 +142,16 @@ public class GameManager : MonoBehaviour
             while (mEnemyList.Count > 0)
             {
                 int ranZone = Random.Range(0, 4);
-                GameObject instantEnemy = Instantiate(mEnemies[mEnemyList[0]], mEnemyZones[ranZone].position, mEnemyZones[ranZone].rotation);
+                GameObject instantEnemy = Instantiate(mEnemies[mEnemyList[0]], mEnemyZones[ranZone].position,
+                    mEnemyZones[ranZone].rotation);
                 Enemy enemy = instantEnemy.GetComponent<Enemy>();
                 enemy._target = mPlayer.transform;
                 mEnemyList.RemoveAt(0);
                 yield return new WaitForSeconds(4f);
             }
         }
-        while(mEnemyCntA + mEnemyCntB + mEnemyCntC + mEnemyCntD > 0)
+
+        while (mEnemyCntA + mEnemyCntB + mEnemyCntC + mEnemyCntD > 0)
         {
             yield return null;
         }
@@ -164,27 +187,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         mTime = Time.time;
-        if(CheckEnemyDie(mEnemyGroup) == true)
-        {
-            GetGold(mEnemy);
-        }
     }
 
-    public void GetGold(Enemy enemy)
-    {
-        mCurrentGold += enemy._gold;
-    }
-
-    private bool CheckEnemyDie(Enemy[] enemies)
-    {
-        for (int i = 0; i < enemies.GetLength(0); ++i)
-        {
-            if (enemies[i].curHealth <= 0)
-            {
-                mEnemy = enemies[i];
-                return true;
-            }
-        }
-        return false;
-    }
+   
 }
