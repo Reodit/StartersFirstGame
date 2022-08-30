@@ -44,11 +44,11 @@ public class GameManager : MonoBehaviour
     public GameObject mStartZone;
 
     private PlayerMovement mPlayer;
-    private Enemy mEnemy;
+    public Enemy mEnemy;
     public GameObject[] mEnemies;
     private static float mTime;
     private static int mEnemyCount;
-    private static int mStage;
+    private static int mStage = 1;
     
     private static bool mIsBattle;
 
@@ -122,7 +122,6 @@ public class GameManager : MonoBehaviour
     {
         pi = _player.GetComponent<PlayerInteraction>();
         mIsBattle = true;
-        StartCoroutine(InBattle());
     }
 
     public void StageStart()
@@ -146,8 +145,8 @@ public class GameManager : MonoBehaviour
         {
             mEnemyCntD++;
             GameObject instantEnemy = Instantiate(mEnemies[3], mEnemyZones[0].position, mEnemyZones[0].rotation);
-            Enemy enemy = instantEnemy.GetComponent<Enemy>();
-            enemy._target = mPlayer.transform;
+            mEnemy = instantEnemy.GetComponent<Enemy>();
+            mEnemy._target = mPlayer.transform;
             boss = instantEnemy.GetComponent<Boss>();
         }
         else
@@ -173,11 +172,11 @@ public class GameManager : MonoBehaviour
 
             while (mEnemyList.Count > 0)
             {
-                int ranZone = Random.Range(0, 4);
-                GameObject instantEnemy = Instantiate(mEnemies[mEnemyList[0]], mEnemyZones[ranZone].position,
+                int ranZone = 0;
+                GameObject instantEnemy = Instantiate(mEnemies[2], mEnemyZones[ranZone].position,
                     mEnemyZones[ranZone].rotation);
-                Enemy enemy = instantEnemy.GetComponent<Enemy>();
-                enemy._target = mPlayer.transform;
+                mEnemy = instantEnemy.GetComponent<Enemy>();
+                mEnemy._target = mPlayer.transform;
                 mEnemyList.RemoveAt(0);
                 yield return new WaitForSeconds(4f);
             }
