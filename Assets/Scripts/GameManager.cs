@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     public GameObject mWeaponShop;
     public GameObject mStartZone;
 
-    private PlayerMovement mPlayer;
+    public PlayerMovement mPlayer;
     public Enemy mEnemy;
     public GameObject[] mEnemies;
     private static float mTime;
