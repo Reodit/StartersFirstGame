@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] mEnemies;
     private static float mTime;
     private static int mEnemyCount;
-    private static int mStage = 1;
+    private static int mStage = 0;
     
     private static bool mIsBattle;
 
