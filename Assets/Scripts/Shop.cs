@@ -14,6 +14,7 @@ public class Shop : MonoBehaviour
     public Transform[] itemPos;
     public string[] talkData;
     public Text talkText;
+    public GameManager instance;
 
     public void Enter(PlayerInteraction player)
     {
@@ -36,7 +37,7 @@ public class Shop : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-
+            //상점열
         }
     }
 
@@ -47,6 +48,7 @@ public class Shop : MonoBehaviour
         {
             StopCoroutine(Talk());
             StartCoroutine(Talk());
+            Debug.Log("Buy Item");
             return;
         }
 
