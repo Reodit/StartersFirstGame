@@ -187,11 +187,12 @@ public class Enemy : MonoBehaviour
 
      public void OnTriggerEnter(Collider other)
      {
-         if (other.tag == "Melee")
+        Vector3 reacVec = transform.position - other.transform.position;
+
+        if (other.tag == "Melee")
          {
             Weapon weapon = other.GetComponent<Weapon>();
             curHealth -= weapon.damage;
-            Vector3 reacVec = transform.position - other.transform.position;
 
             StartCoroutine(OnDamage(reacVec, false));
         }
@@ -199,7 +200,9 @@ public class Enemy : MonoBehaviour
          {
             Bullets bullet = other.GetComponent<Bullets>();
             curHealth -= bullet.damage;
+            Debug.Log("ÃÑ¾Ë ¸ÂÀ½");
             Debug.Log(curHealth);
+            StartCoroutine(OnDamage(reacVec, false));
         }
      }
 
@@ -227,8 +230,8 @@ public class Enemy : MonoBehaviour
              }
              gameObject.layer = 14;
              isDead = true;
-             GameManager.Instance.Gold = this.gold;
-             GameManager.Instance.Score = this.score;
+             //GameManager.Instance.Gold = this.gold;
+             //GameManager.Instance.Score = this.score;
 
              isChase = false;
              _nav.enabled = false;
@@ -249,8 +252,8 @@ public class Enemy : MonoBehaviour
                  rectVec += Vector3.up;
                  _rigid.AddForce(rectVec * 5 , ForceMode.Impulse);
              }
-             if(_enemyType != Type.D)
-                Destroy(gameObject, 4);
+             //if(_enemyType != Type.D)
+             Destroy(gameObject, 4);
          }
      }
 

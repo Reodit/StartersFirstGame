@@ -271,8 +271,8 @@ public class GameManager : MonoBehaviour
 
         //무기 UI
         weapon1Img.color = new Color(1, 1, 1, pi.hasWeapons[0] ? 1 : 0);
-        weapon2Img.color = new Color(1, 1, 1, pi.hasWeapons[0] ? 1 : 0);
-        weapon3Img.color = new Color(1, 1, 1, pi.hasWeapons[0] ? 1 : 0);
+        weapon2Img.color = new Color(1, 1, 1, pi.hasWeapons[1] ? 1 : 0);
+        weapon3Img.color = new Color(1, 1, 1, pi.hasWeapons[2] ? 1 : 0);
         weapon4Img.color = new Color(1, 1, 1, player.hasGrenade > 0 ? 1 : 0);
 
         //몬스터 수 UI
