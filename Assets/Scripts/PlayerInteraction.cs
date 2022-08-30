@@ -6,20 +6,20 @@ public class PlayerInteraction : MonoBehaviour
 {
     #region Variables
 
-    public GameObject[] weapons; // ¹«±â¸¦ ´ãÀ» ¹è¿­ 
-    [SerializeField] private bool[] hasWeapons; // ÇöÀç °¡Áö°í ÀÖ´Â ¹«±â
-    private bool interDown; // »óÈ£ÀÛ¿ë ¹öÆ°
-    internal bool isSwap; // ¹«±â º¯È¯
-    internal bool fDown; // °ø°Ý Å° 
-    internal bool isFireReady; // °ø°Ý ÁØºñ
-    private float fireDelay; // °ø°Ý µô·¹ŸÞ
+    public GameObject[] weapons; // ï¿½ï¿½ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­
+    public bool[] hasWeapons; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
+    private bool interDown; // ï¿½ï¿½È£ï¿½Û¿ï¿½ ï¿½ï¿½Æ°
+    internal bool isSwap; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
+    internal bool fDown; // ï¿½ï¿½ï¿½ï¿½ Å° 
+    internal bool isFireReady; // ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½
+    private float fireDelay; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private int weaponIndex = -1; 
     private int equipWeaponIndex = -1;
-    private bool s1, s2, s3; // ¹«±â ±³Ã¼
+    private bool s1, s2, s3; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼
 
     private PlayerMovement pm;
-    private GameObject nearObject; // ±ÙÃ³¿¡ ÀÖ´Â ¿ÀºêÁ§Æ® 
-    private Weapon equipWeapon;
+    private GameObject nearObject; // ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® 
+    internal Weapon equipWeapon;
     #endregion
 
     #region Start
@@ -51,8 +51,8 @@ public class PlayerInteraction : MonoBehaviour
     }
     #endregion
 
-    #region Swap (¹«±â º¯È¯)
-    void Swap() // ¹«±â º¯È¯
+    #region Swap (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯)
+    void Swap() // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
     {
         if (s1 && (!hasWeapons[0] || equipWeaponIndex == 0))
             return;
@@ -87,7 +87,7 @@ public class PlayerInteraction : MonoBehaviour
     }
     #endregion
 
-    #region Interaction (»óÈ£ ÀÛ¿ë)
+    #region Interaction (ï¿½ï¿½È£ ï¿½Û¿ï¿½)
     void Interaction()
     {
         if (interDown && nearObject != null && !pm.isJump && !pm.isDodge)
@@ -104,7 +104,7 @@ public class PlayerInteraction : MonoBehaviour
     }
     #endregion
 
-    #region Attack (°ø°Ý)
+    #region Attack (ï¿½ï¿½ï¿½ï¿½)
     void Attack()
     {
         if (equipWeapon == null)
@@ -123,7 +123,7 @@ public class PlayerInteraction : MonoBehaviour
     }
     #endregion
 
-    #region Trigger (¾ÆÀÌÅÛ ÁÝ±â)
+    #region Trigger (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ý±ï¿½)
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Weapon"))

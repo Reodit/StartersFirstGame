@@ -11,9 +11,11 @@ public class GameManager : MonoBehaviour
     
     private static GameManager instance = null;
 
+    public GameObject _player;
     public GameObject menuCam;
     public GameObject gameCam;
     public PlayerMotor player;
+    PlayerInteraction pi;
     public Boss boss;
     public int stage;
 
@@ -118,6 +120,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        pi = _player.GetComponent<PlayerInteraction>();
         mIsBattle = true;
         StartCoroutine(InBattle());
     }
@@ -251,24 +254,24 @@ public class GameManager : MonoBehaviour
         playerHealthTxt.text = player.health + " / " + player.maxHealth;
         playerCoinTxt.text = string.Format("{0:n0}", player.coin);
 
-        //if (player.equipWeapon == null)
-        //{
-        //    playerAmmoTxt.text = "- / " + player.ammo;
-        //}
-        //else if (player.equipWeapon.type == Weapon.Type.Melee)
-        //{
-        //    playerAmmoTxt.text = "- / " + player.ammo;
-        //}
-        //else
-        //{
-        //    playerAmmoTxt.text = player.equipWeapon.curAmmo + " / " + player.ammo;
-        //}
+        if (pi.equipWeapon == null)
+        {
+            playerAmmoTxt.text = "- / " + player.ammo;
+        }
+        else if (pi.equipWeapon.type == Weapon.Type.Melee)
+        {
+            playerAmmoTxt.text = "- / " + player.ammo;
+        }
+        else
+        {
+            //playerAmmoTxt.text = pi.equipWeapon.curAmmo + " / " + player.ammo;
+        }
 
         //무기 UI
-        //weapon1Img.color = new Color(1, 1, 1, player.hasWeapons[0] ? 1 : 0);
-        //weapon2Img.color = new Color(1, 1, 1, player.hasWeapons[0] ? 1 : 0);
-        //weapon3Img.color = new Color(1, 1, 1, player.hasWeapons[0] ? 1 : 0);
-        //weapon4Img.color = new Color(1, 1, 1, player.hasGrenades > 0 ? 1 : 0);
+        weapon1Img.color = new Color(1, 1, 1, pi.hasWeapons[0] ? 1 : 0);
+        weapon2Img.color = new Color(1, 1, 1, pi.hasWeapons[0] ? 1 : 0);
+        weapon3Img.color = new Color(1, 1, 1, pi.hasWeapons[0] ? 1 : 0);
+        weapon4Img.color = new Color(1, 1, 1, player.hasGrenade > 0 ? 1 : 0);
 
         //몬스터 수 UI
         enemyATxt.text = mEnemyCntA.ToString();
