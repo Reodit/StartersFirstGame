@@ -4,32 +4,33 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    public GameObject[] weapons;
-    public bool[] hasWeapons;
-    
-    private bool interDown;
-    internal bool isSwap;
-    internal bool isFireReady;
-    internal bool fDown;
+    #region Variables
 
-    public float fireDelay;
-
-    private int weaponIndex = -1;
+    public GameObject[] weapons; // 무기를 담을 배열 
+    [SerializeField] private bool[] hasWeapons; // 현재 가지고 있는 무기
+    private bool interDown; // 상호작용 버튼
+    internal bool isSwap; // 무기 변환
+    internal bool fDown; // 공격 키 
+    internal bool isFireReady; // 공격 준비
+    private float fireDelay; // 공격 딜레읻
+    private int weaponIndex = -1; 
     private int equipWeaponIndex = -1;
     private bool s1, s2, s3; // 무기 교체
 
-    PlayerMovement playerMovement;
-    GameObject nearObject;
-    Weapon equipWeapon;
+    private PlayerMovement pm;
+    private GameObject nearObject; // 근처에 있는 오브젝트 
+    private Weapon equipWeapon;
+    #endregion
 
-    // Start is called before the first frame update
+    #region Start
     void Start()
     {
-        playerMovement = GetComponent<PlayerMovement>();
+        pm = GetComponent<PlayerMovement>();
         isFireReady = true;
     }
+    #endregion
 
-    // Update is called once per frame
+    #region Update
     void Update()
     {
         GetInput();
@@ -37,6 +38,9 @@ public class PlayerInteraction : MonoBehaviour
         Swap();
         Attack();
     }
+    #endregion
+
+    #region Input
     void GetInput()
     {
         interDown = Input.GetButtonDown("Interaction");
@@ -44,9 +48,11 @@ public class PlayerInteraction : MonoBehaviour
         s2 = Input.GetButtonDown("Swap2");
         s3 = Input.GetButtonDown("Swap3");
         fDown = Input.GetButtonDown("Fire1");
-
     }
-    void Swap()
+    #endregion
+
+    #region Swap (무기 변환)
+    void Swap() // 무기 변환
     {
         if (s1 && (!hasWeapons[0] || equipWeaponIndex == 0))
             return;
@@ -59,7 +65,7 @@ public class PlayerInteraction : MonoBehaviour
         if (s2) weaponIndex = 1;
         if (s3) weaponIndex = 2;
 
-        if ((s1 || s2 || s3) && !playerMovement.isJump && !playerMovement.isDodge)
+        if ((s1 || s2 || s3) && !pm.isJump && !pm.isDodge)
         {
             if (equipWeapon != null)
             {
@@ -69,7 +75,7 @@ public class PlayerInteraction : MonoBehaviour
             equipWeapon = weapons[weaponIndex].GetComponent<Weapon>();
             equipWeapon.gameObject.SetActive(true);
 
-            playerMovement.anim.SetTrigger("doSwap");
+            pm.anim.SetTrigger("doSwap");
             isSwap = true;
 
             Invoke("SwapOut", 0.4f);
@@ -79,9 +85,12 @@ public class PlayerInteraction : MonoBehaviour
     {
         isSwap = false;
     }
+    #endregion
+
+    #region Interaction (상호 작용)
     void Interaction()
     {
-        if (interDown && nearObject != null && !playerMovement.isJump && !playerMovement.isDodge)
+        if (interDown && nearObject != null && !pm.isJump && !pm.isDodge)
         {
             if (nearObject.CompareTag("Weapon"))
             {
@@ -93,6 +102,9 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
     }
+    #endregion
+
+    #region Attack (공격)
     void Attack()
     {
         if (equipWeapon == null)
@@ -102,13 +114,16 @@ public class PlayerInteraction : MonoBehaviour
         fireDelay += Time.deltaTime;
         isFireReady = equipWeapon.rate < fireDelay;
 
-        if (fDown && isFireReady && !playerMovement.isDodge && !isSwap)
+        if (fDown && isFireReady && !pm.isDodge && !isSwap)
         {
             equipWeapon.Use();
-            playerMovement.anim.SetTrigger("doSwing");
+            pm.anim.SetTrigger("doSwing");
             fireDelay = 0;
         }
     }
+    #endregion
+
+    #region Trigger (아이템 줍기)
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Weapon"))
@@ -121,4 +136,5 @@ public class PlayerInteraction : MonoBehaviour
         if (other.gameObject.CompareTag("Weapon"))
             nearObject = null;
     }
+    #endregion
 }

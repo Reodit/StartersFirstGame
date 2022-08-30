@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 1346770081}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,8 +167,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   jumpPower: 15
-  isJump: 0
-  isDodge: 0
 --- !u!114 &1261097316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +184,6 @@ MonoBehaviour:
   - {fileID: 1509416926169416907}
   - {fileID: 547435429188864461}
   hasWeapons: 000000
-  isSwap: 0
 --- !u!114 &1346770081
 MonoBehaviour:
   m_ObjectHideFlags: 0
