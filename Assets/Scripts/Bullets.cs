@@ -17,6 +17,11 @@ public class Bullets : MonoBehaviour
             Debug.Log(11);
             Destroy(gameObject, 3);
         }
+        if (!isMelee && collision.gameObject.tag == "Wall")
+        {
+            Debug.Log(1);
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,6 +29,11 @@ public class Bullets : MonoBehaviour
         if (!isMelee && other.gameObject.tag == "Wall")
         {
             Debug.Log(1);
+            Destroy(gameObject);
+        }
+        if(!isMelee && other.gameObject.tag == "Player")
+        {
+            Debug.Log(2);
             Destroy(gameObject);
         }
     }

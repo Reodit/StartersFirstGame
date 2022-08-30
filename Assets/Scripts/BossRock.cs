@@ -13,13 +13,18 @@ public class BossRock : Bullets
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        DateTime time = DateTime.Now;
+
         StartCoroutine(GainPowerTime());
+      
         StartCoroutine(GainPower());
+        DateTime end = DateTime.Now;
+        Debug.Log(end - time);
     }
 
     IEnumerator GainPowerTime()
     {
-        yield return new WaitForSeconds(2.2f);
+        yield return new WaitForSeconds(1.2f);
         isShoot = true;
     }
 
@@ -27,10 +32,12 @@ public class BossRock : Bullets
     {
         while (!isShoot)
         {
+
             angularPower += 0.02f;
             scaleValue += 0.005f;
+            //scaleValue = Mathf.Min(scaleValue, 5f);
             transform.localScale = Vector3.one * scaleValue;
-            Debug.Log(transform.localScale);
+            //Debug.Log(transform.localScale);
             _rigidbody.AddTorque(transform.right * angularPower, ForceMode.Acceleration);
             yield return null;
         }

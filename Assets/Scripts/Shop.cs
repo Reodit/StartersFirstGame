@@ -36,7 +36,7 @@ public class Shop : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            //상점 UI 열
+
         }
     }
 

@@ -16,6 +16,7 @@ public class PlayerInteraction : MonoBehaviour
     private int weaponIndex = -1; 
     private int equipWeaponIndex = -1;
     private bool s1, s2, s3; // ���� ��ü
+    bool isShop = false;
 
     private PlayerMovement pm;
     private GameObject nearObject; // ��ó�� �ִ� ������Ʈ 
@@ -88,7 +89,7 @@ public class PlayerInteraction : MonoBehaviour
     #endregion
 
     #region Interaction (��ȣ �ۿ�)
-    void Interaction()
+    public void Interaction()
     {
         if (interDown && nearObject != null && !pm.isJump && !pm.isDodge)
         {
@@ -100,10 +101,12 @@ public class PlayerInteraction : MonoBehaviour
 
                 Destroy(nearObject);
             }
-            else if (nearObject.tag == "Shop")
+            else if (nearObject.CompareTag("Shop"))
             {
                 Shop shop = nearObject.GetComponent<Shop>();
                 shop.Enter(this);
+                Debug.Log("Enter the Shop");
+                isShop = true;
             }
         }
     }
@@ -143,6 +146,7 @@ public class PlayerInteraction : MonoBehaviour
         else if (other.gameObject.CompareTag("Shop")) {
             Shop shop = nearObject.GetComponent<Shop>();
             shop.Exit();
+            isShop = false;
             nearObject = null;
         }
     }
