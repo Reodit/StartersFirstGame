@@ -6,15 +6,14 @@ public class PlayerInteraction : MonoBehaviour
 {
     public GameObject[] weapons;
     public bool[] hasWeapons;
-
+    
     private bool interDown;
     public bool isSwap;
     private int weaponIndex = -1;
     private int equipWeaponIndex = -1;
     private bool s1, s2, s3; // 무기 교체
 
-
-    private Player player;
+    private PlayerMovement player;
     GameObject nearObject;
     GameObject equipWeapon;
 
@@ -22,7 +21,7 @@ public class PlayerInteraction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<Player>();
+        player = GetComponent<PlayerMovement>();
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -92,14 +91,14 @@ public class PlayerInteraction : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Weapon")
+        if (other.gameObject.CompareTag("Weapon"))
             nearObject = other.gameObject;
 
-        Debug.Log(nearObject.name);
+        //Debug.Log(nearObject.name);
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Weapon")
+        if (other.gameObject.CompareTag("Weapon"))
             nearObject = null;
     }
 }

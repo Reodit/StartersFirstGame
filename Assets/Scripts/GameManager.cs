@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject mWeaponShop;
     public GameObject mStartZone;
 
-    private Player mPlayer;
+    private PlayerMovement mPlayer;
     private Enemy mEnemy;
     public Enemy[] mEnemyGroup;
     public GameObject[] mEnemies;
